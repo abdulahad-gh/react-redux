@@ -2,6 +2,6 @@ import fileterReducer from "./filterReducer";
 import productReducer from "./productReducer";
 const rootReducer = {
   product: productReducer,
-  fileter: fileterReducer,
+  filter: fileterReducer,
 };
 export default rootReducer;

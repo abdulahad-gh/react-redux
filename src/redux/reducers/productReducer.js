@@ -17,7 +17,6 @@ const productReducer = (state = initialAppState, action) => {
   const selectedCart = state.carts.find(
     (cart) => cart.id === action.payload.id
   );
-  console.log(selectedCart);
   switch (action.type) {
     case ISLOADING:
       return {

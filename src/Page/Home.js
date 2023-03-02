@@ -2,11 +2,19 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../Components/ProductCard";
-import { error, getAllProduct } from "../redux/actionsCreators/productActions";
+import {
+  Brand,
+  error,
+  getAllProduct,
+  stockCreator,
+} from "../redux/actionsCreators/productActions";
 
 export default function Home() {
-  const state = useSelector((state) => state.product);
-  console.log(state);
+  const { product, filter } = useSelector((state) => state);
+  const { filters, keyword } = filter;
+  const { stock, brand } = filters;
+  const activeClass = "text-white bg-blue-500 border-white";
+  console.log(stock);
   const dispatch = useDispatch();
   useEffect(() => {
     axios
@@ -18,9 +26,8 @@ export default function Home() {
         dispatch(error(errormsg.response.statusText));
       });
   }, []);
-  console.log(state);
   let content;
-  if (state.isLoading) {
+  if (product.isLoading) {
     content = (
       <p>
         Loading...
@@ -48,17 +55,38 @@ export default function Home() {
   //   console.log(product);
   // }
 
-  if (state.error) {
-    content = state.error;
+  if (product.error) {
+    content = product.error;
   } else {
-    content = state?.products?.map((p) => <ProductCard product={p} />);
+    content = product?.products?.map((p) => <ProductCard product={p} />);
   }
   return (
     <>
       <aside className="aside-container">
-        <li>Stock</li>
-        <li>AMD</li>
-        <li>Intel</li>
+        <li
+          onClick={() => dispatch(stockCreator())}
+          className={`bg-gray-400 rounded-md p-2 cursor-pointer ${
+            stock === true ? activeClass : null
+          }`}
+        >
+          Stock
+        </li>
+        <li
+          onClick={() => dispatch(Brand("AMD"))}
+          className={` bg-gray-400 rounded-md p-2 cursor-pointer ${
+            brand.includes("AMD") ? activeClass : null
+          }`}
+        >
+          AMD
+        </li>
+        <li
+          onClick={() => dispatch(Brand("INTEL"))}
+          className={`bg-gray-400 rounded-md p-2 cursor-pointer ${
+            brand.includes("INTEL") ? activeClass : null
+          }`}
+        >
+          Intel
+        </li>
       </aside>
       <section id="card-container">{content}</section>
     </>

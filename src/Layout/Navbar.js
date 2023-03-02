@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  const state = useSelector((state) => state.product);
+  const { product } = useSelector((state) => state);
 
   return (
     <nav id="navbar">
@@ -36,7 +36,7 @@ export default function Navbar() {
                   borderRadius: "100%",
                 }}
               >
-                {state.carts.length}
+                {product.carts.length}
               </span>{" "}
             </Link>
           </li>
