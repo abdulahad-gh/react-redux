@@ -31,13 +31,19 @@ export default function AddProduct() {
     const productTitle = e.target.productTitle.value;
     const productDesc = e.target.productDesc.value;
     const productPrice = e.target.productPrice.value;
+    const productBrand = e.target.productBrand.value;
     const productImg = imgAssest;
+    const productStatus =
+      String(e.target.productStatus.value).toLowerCase() === "true";
     const productData = {
       productTitle,
       productDesc,
       productPrice,
       productImg,
+      status: productStatus,
+      brand: productBrand,
     };
+    console.log(productData);
 
     axios
       .post("http://localhost:5000/add-product", productData)
@@ -71,6 +77,18 @@ export default function AddProduct() {
             name="productPrice"
             placeholder="Price"
           />
+          <select className="product-status" name="productBrand">
+            <option value={"no-brand"}>Select Brand</option>
+            <option value={"amd"}> Amd</option>
+            <option value={"intel"}> Intel</option>
+          </select>
+
+          <select className="product-status" name="productStatus">
+            <option value={true}>Select Stock status</option>
+            <option value={true}> true</option>
+            <option value={false}> false</option>
+          </select>
+
           <input
             className="product-desc"
             type="text"

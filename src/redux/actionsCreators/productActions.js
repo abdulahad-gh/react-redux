@@ -21,7 +21,7 @@ export const getAllProduct = (products) => {
   };
 };
 
-export const addToCart = (product) => {
+export const addToCartFunc = (product) => {
   return {
     type: ADD_TO_CART,
     payload: product,

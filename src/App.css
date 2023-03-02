@@ -104,7 +104,8 @@ body {
 .add-product-form h3 {
   text-align: center;
 }
-.add-product-form input {
+.add-product-form input,
+select {
   border-radius: 10px;
   display: block;
   margin-top: 6px;

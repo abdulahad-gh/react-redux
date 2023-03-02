@@ -12,7 +12,8 @@ import {
 export default function Home() {
   const { product, filter } = useSelector((state) => state);
   const { filters, keyword } = filter;
-  const { stock, brand } = filters;
+  const { stock, brand } = useSelector((state) => state.filter.filters);
+  console.log(stock);
   const activeClass = "text-white bg-blue-500 border-white";
   console.log(stock);
   const dispatch = useDispatch();
@@ -60,29 +61,47 @@ export default function Home() {
   } else {
     content = product?.products?.map((p) => <ProductCard product={p} />);
   }
+
+  if (product.products.length && (stock || brand.length)) {
+    content = product.products
+      .filter((item) => {
+        if (stock) {
+          return item.status === true;
+        }
+        return product.products;
+      })
+      .filter((item) => {
+        if (brand.length) {
+          return brand.includes(item.brand);
+        }
+        return product.products;
+      })
+      .map((item) => <ProductCard product={item} />);
+  }
+
   return (
     <>
       <aside className="aside-container">
         <li
           onClick={() => dispatch(stockCreator())}
           className={`bg-gray-400 rounded-md p-2 cursor-pointer ${
-            stock === true ? activeClass : null
+            stock ? activeClass : null
           }`}
         >
           Stock
         </li>
         <li
-          onClick={() => dispatch(Brand("AMD"))}
+          onClick={() => dispatch(Brand("amd"))}
           className={` bg-gray-400 rounded-md p-2 cursor-pointer ${
-            brand.includes("AMD") ? activeClass : null
+            brand.includes("amd") ? activeClass : null
           }`}
         >
           AMD
         </li>
         <li
-          onClick={() => dispatch(Brand("INTEL"))}
+          onClick={() => dispatch(Brand("intel"))}
           className={`bg-gray-400 rounded-md p-2 cursor-pointer ${
-            brand.includes("INTEL") ? activeClass : null
+            brand.includes("intel") ? activeClass : null
           }`}
         >
           Intel

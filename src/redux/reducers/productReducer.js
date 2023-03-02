@@ -40,7 +40,7 @@ const productReducer = (state = initialAppState, action) => {
     case ADD_TO_CART:
       if (selectedCart) {
         selectedCart.quantity = selectedCart.quantity + 1;
-        const newCarts = state.carts.filter(
+        const newCarts = state?.carts?.filter(
           (cart) => cart.id !== selectedCart.id
         );
 
