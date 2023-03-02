@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+}
+body {
+  padding: 0 100px;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: aquamarine;
+}
+.left-side {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo {
+  font-size: 22px;
+  text-transform: capitalize;
+}
+.search-input input {
+  padding: 6px;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+.nav-links-container ul {
+  display: flex;
+  gap: 6px;
+}
+
+.nav-links-container ul li a {
+  color: white;
+  background-color: gray;
+  padding: 8px;
+  border-radius: 6px;
+}
+.card {
+  padding: 14px;
+  height: auto;
+  border-radius: 8px;
+  background-color: gray;
+  transition: 0.3s;
+  position: relative;
+}
+.quantity {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+}
+.card:hover {
+  box-shadow: 8px 8px 5px gray;
+}
+.card-img {
+  height: 200px;
+  object-fit: cover;
+  margin: 0 auto;
+  display: block;
+  border-radius: 8px;
+}
+.card div {
+  display: flex;
+  justify-content: space-around;
+}
+.card-title {
+  font-weight: bold;
+}
+.card-btn {
+  background-color: rgb(107, 157, 214);
+  color: white;
+  float: right;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 14px;
+  border: none;
+  box-shadow: 3px 3px 2px black;
+}
+.card-btn:hover {
+  box-shadow: 0 0 0;
+}
+
+.add-product-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.add-product-form div {
+  background-color: gray;
+  padding: 10px;
+  border-radius: 20px;
+}
+.add-product-form h3 {
+  text-align: center;
+}
+.add-product-form input {
+  border-radius: 10px;
+  display: block;
+  margin-top: 6px;
+  color: #000;
+  border: none;
+  height: 30px;
+  width: 200px;
+  padding: 4px;
+}
+
+.product-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  margin-top: 20px;
+}
+.upload-img-temp {
+  cursor: pointer;
+}
+.upload-img-temp input {
+  width: 0;
+  height: 0;
+}
+.add-product-form input[type="submit"] {
+  color: #000;
+  cursor: pointer;
+  width: 50%;
+  margin: 30px auto 0;
+  background-color: blue;
+}
+
+#card-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 80px;
+  margin-top: 100px;
+}
+.aside-container {
+  display: flex;
+  float: right;
+  gap: 10px;
+  align-items: center;
+  height: 70px;
+}
+.aside-container li {
+  background-color: gray;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
