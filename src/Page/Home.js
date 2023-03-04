@@ -14,7 +14,7 @@ export default function Home() {
   const { filters, keyword } = filter;
   const { stock, brand } = useSelector((state) => state.filter.filters);
   console.log(stock);
-  const activeClass = "text-white bg-blue-500 border-white";
+  const activeClass = "text-white  bg-blue-600 border-white";
   console.log(stock);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -56,27 +56,25 @@ export default function Home() {
   //   console.log(product);
   // }
 
-  if (product.error) {
-    content = product.error;
-  } else {
-    content = product?.products?.map((p) => <ProductCard product={p} />);
-  }
-
-  if (product.products.length && (stock || brand.length)) {
-    content = product.products
-      .filter((item) => {
-        if (stock) {
-          return item.status === true;
-        }
-        return product.products;
-      })
-      .filter((item) => {
-        if (brand.length) {
-          return brand.includes(item.brand);
-        }
-        return product.products;
-      })
-      .map((item) => <ProductCard product={item} />);
+  console.log(product);
+  if (product.products.length) {
+    content = product.products.map((item) => <ProductCard product={item} />);
+    if (stock || brand.length) {
+      content = product.products
+        .filter((item) => {
+          if (stock) {
+            return item.status === true;
+          }
+          return product.products;
+        })
+        .filter((item) => {
+          if (brand.length) {
+            return brand.includes(item.brand);
+          }
+          return product.products;
+        })
+        .map((item) => <ProductCard product={item} />);
+    }
   }
 
   return (
@@ -85,7 +83,7 @@ export default function Home() {
         <li
           onClick={() => dispatch(stockCreator())}
           className={`bg-gray-400 rounded-md p-2 cursor-pointer ${
-            stock ? activeClass : null
+            stock === true ? activeClass : null
           }`}
         >
           Stock
