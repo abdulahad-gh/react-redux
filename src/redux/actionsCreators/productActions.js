@@ -1,4 +1,5 @@
 import {
+  ADD_PRODUCT,
   ADD_TO_CART,
   BRAND,
   ERROR,
@@ -21,6 +22,12 @@ export const getAllProduct = (products) => {
     payload: products,
   };
 };
+export const addProduct = (product) => {
+  return {
+    type: ADD_PRODUCT,
+    payload:product
+  }
+}
 
 export const addToCartFunc = (product) => {
   return {

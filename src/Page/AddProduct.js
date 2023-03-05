@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import postProduct from "../redux/thunk/product/postProduct";
 
 export default function AddProduct() {
+  const products = useSelector(state => state.product.products)
   const [imgAssest, setImgAssest] = useState(false);
   const apiKey = "3b28fffb6dd5b0231009483b4f31d4ed";
+  const dispatch  =useDispatch()
   const navigate = useNavigate();
   const uploadImg = (e) => {
     const imgData = e.target.files[0];
@@ -26,6 +30,7 @@ export default function AddProduct() {
         }
       });
   };
+  let lengthOfProduct = [...products];
   const submitProduct = (e) => {
     e.preventDefault();
     const productTitle = e.target.productTitle.value;
@@ -43,22 +48,24 @@ export default function AddProduct() {
       status: productStatus,
       brand: productBrand,
     };
-    console.log(productData);
 
-    axios
-      .post("http://localhost:5000/add-product", productData)
-      .then((res) => {
-        console.log(res);
-        if (!res.data.exists) {
+  const data = dispatch(postProduct(productData))
+  console.log(data)
+    // axios
+    //   .post("http://localhost:5000/add-product", productData)
+    //   .then((res) => {
+    //     console.log(res);
+    console.log(lengthOfProduct)
+        if (lengthOfProduct.length + 1 === products.length) {
           alert("product added successfully");
           navigate("/");
         } else {
           alert("your product is alreay exists");
         }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
   return (
     <div className="add-product-form">

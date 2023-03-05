@@ -1,4 +1,5 @@
 import {
+  ADD_PRODUCT,
   ADD_TO_CART,
   ERROR,
   GET_ALL_PRODUCTS,
@@ -30,6 +31,11 @@ const productReducer = (state = initialAppState, action) => {
         isLoading: false,
         error: action.payload,
       };
+      case ADD_PRODUCT :
+        return {
+          ...state,
+          products:[...state.products,action.payload]
+        }
     case GET_ALL_PRODUCTS:
       return {
         ...state,
