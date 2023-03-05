@@ -1,4 +1,4 @@
-import { BRAND, STOCK, TEST } from "../actionTypes/actionTypes";
+import { BRAND, REMOVE_FILTER, STOCK, TEST } from "../actionTypes/actionTypes";
 
 const initialState = {
   filters: {
@@ -30,6 +30,14 @@ const fileterReducer = (state = initialState, action) => {
         filters: {
           ...state.filters,
           brand: [...state.filters.brand, action.payload],
+        },
+      };
+    case REMOVE_FILTER:
+      return {
+        ...state,
+        filters: {
+          stock: false,
+          brand: [],
         },
       };
 

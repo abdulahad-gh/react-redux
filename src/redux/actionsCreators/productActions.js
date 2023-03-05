@@ -4,6 +4,7 @@ import {
   ERROR,
   GET_ALL_PRODUCTS,
   ISLOADING,
+  REMOVE_FILTER,
   REMOVE_FROM_CART,
   STOCK,
 } from "../actionTypes/actionTypes";
@@ -49,3 +50,10 @@ export const stockCreator = () => {
     type: STOCK,
   };
 };
+
+export const removeFilter = () => {
+  return {
+    type: REMOVE_FILTER,
+  };
+};
+

@@ -6,27 +6,22 @@ import {
   Brand,
   error,
   getAllProduct,
+  removeFilter,
   stockCreator,
 } from "../redux/actionsCreators/productActions";
+import fetchData from "../redux/thunk/product/fetchData";
 
 export default function Home() {
   const { product, filter } = useSelector((state) => state);
   const { filters, keyword } = filter;
   const { stock, brand } = useSelector((state) => state.filter.filters);
-  console.log(stock);
-  const activeClass = "text-white  bg-blue-600 border-white";
+  const activeClass = "text-white  bg-blue-800 border-white";
   console.log(stock);
   const dispatch = useDispatch();
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/products")
-      .then((data) => {
-        dispatch(getAllProduct(data.data));
-      })
-      .catch((errormsg) => {
-        dispatch(error(errormsg.response.statusText));
-      });
+    dispatch(fetchData());
   }, []);
+  
   let content;
   if (product.isLoading) {
     content = (
@@ -104,6 +99,14 @@ export default function Home() {
         >
           Intel
         </li>
+        {stock || brand.length ? (
+          <li
+            onClick={() => dispatch(removeFilter())}
+            className="bg-gray-100 rounded-md p-2 cursor-pointer"
+          >
+            Clear filter
+          </li>
+        ) : null}
       </aside>
       <section id="card-container">{content}</section>
     </>
