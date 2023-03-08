@@ -1,6 +1,7 @@
 import {
   ADD_PRODUCT,
   ADD_TO_CART,
+  DELETE_PRODUCT,
   ERROR,
   GET_ALL_PRODUCTS,
   ISLOADING,
@@ -36,6 +37,11 @@ const productReducer = (state = initialAppState, action) => {
           ...state,
           products:[...state.products,action.payload]
         }
+        case DELETE_PRODUCT :
+          return{
+            ...state,
+            products:state.products.filter(product => product.id !== action.payload)
+          }
     case GET_ALL_PRODUCTS:
       return {
         ...state,

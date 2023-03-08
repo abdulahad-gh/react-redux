@@ -2,9 +2,9 @@ import {
   ADD_PRODUCT,
   ADD_TO_CART,
   BRAND,
+  DELETE_PRODUCT,
   ERROR,
   GET_ALL_PRODUCTS,
-  ISLOADING,
   REMOVE_FILTER,
   REMOVE_FROM_CART,
   STOCK,
@@ -26,6 +26,12 @@ export const addProduct = (product) => {
   return {
     type: ADD_PRODUCT,
     payload:product
+  }
+}
+export const deleteProduct = (id)=>{
+  return {
+    type:DELETE_PRODUCT,
+    payload:id
   }
 }
 

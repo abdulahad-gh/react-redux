@@ -49,19 +49,19 @@ export default function AddProduct() {
       brand: productBrand,
     };
 
-  const data = dispatch(postProduct(productData))
-  console.log(data)
+ dispatch(postProduct(productData))
+
     // axios
     //   .post("http://localhost:5000/add-product", productData)
     //   .then((res) => {
-    //     console.log(res);
-    console.log(lengthOfProduct)
-        if (lengthOfProduct.length + 1 === products.length) {
-          alert("product added successfully");
-          navigate("/");
-        } else {
-          alert("your product is alreay exists");
-        }
+    // //     console.log(res);
+    // console.log(lengthOfProduct)
+    //     if (lengthOfProduct.length + 1 === products.length) {
+    //       alert("product added successfully");
+    //       navigate("/");
+    //     } else {
+    //       alert("your product is alreay exists");
+    //     }
     //   })
     //   .catch((err) => {
     //     console.log(err);

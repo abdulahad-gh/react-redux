@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import deleteProductThunk from '../../redux/thunk/product/deleteProduct';
 import fetchData from '../../redux/thunk/product/fetchData';
 
 const ManageProducts = () => {
@@ -10,7 +11,8 @@ useEffect(()=> {
     dispatch (fetchData())
 },[])
     return (
-        <table class="table-auto">
+      <div className='flex justify-center items-center  h-[300px]'>
+          <table class="table-auto">
         <thead>
           <tr>
             <th>Img</th>
@@ -19,7 +21,7 @@ useEffect(()=> {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody > 
         {
             products.map(product =>   <tr >
                 <td><img className='w-4 h-4 rounded-full object-cover' src={product.productImg} /></td>
@@ -27,12 +29,13 @@ useEffect(()=> {
                 <td>{product.productPrice}</td>
                 <td className='flex gap-2'>
                     <button className=' btn bg-gray-200 rounded-md p-1 text-blue-500 hover:text-white'>Edit</button>
-                    <button className=' btn bg-gray-500 rounded-md p-1 text-white hover:text-red-500'>Delete</button>
+                    <button onClick={()=>dispatch(deleteProductThunk(product.id))} className=' btn bg-gray-500 rounded-md p-1 text-white hover:text-red-500'>Delete</button>
                 </td>
               </tr>)
         }
         </tbody>
       </table>
+      </div>
     );
 };
 
