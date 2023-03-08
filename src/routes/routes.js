@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import About from "../Page/About";
-import AddProduct from "../Page/AddProduct";
+import AddProduct from "../Page/Dashboard/Pages/AddProduct";
 import Cart from "../Page/Cart";
-import ManageProducts from "../Page/Dashboard/ManageProducts";
+import DashboardMain from "../Page/Dashboard/DashboardMain";
+import ManageProducts from "../Page/Dashboard/Pages/ManageProducts";
 import Home from "../Page/Home";
 import TopRated from "../Page/TopRated";
 
@@ -28,16 +29,31 @@ const routes = createBrowserRouter([
         path: "cart",
         element: <Cart />,
       },
+      
       {
-        path: "add-new-product",
-        element: <AddProduct />,
-      },
-      {
-        path: "manage-products",
-        element: <ManageProducts />,
-      },
+        path:"dashboard",
+        element: <DashboardMain/>,
+        children:[
+          {
+            path: "manage-products",
+            element: <ManageProducts />,
+            index:true            
+          },
+          {
+            path: "add-new-product",
+            element: <AddProduct />,
+            
+          },
+         
+        ]
+      
+
+      }
     ],
+
+    
   },
+  
 ]);
 console.log(routes);
 export default routes;
