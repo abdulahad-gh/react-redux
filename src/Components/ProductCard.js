@@ -1,10 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import {
-  addToCartFunc,
-  removeProductCart,
-} from "../redux/actionsCreators/productActions";
+
 
 export default function ProductCard({ product }) {
   const location = useLocation();
@@ -24,7 +21,7 @@ export default function ProductCard({ product }) {
         {location.pathname === "/cart" ? (
           <button
             className="card-btn"
-            onClick={() => dispatch(removeProductCart(product))}
+            onClick={() => dispatch((product))}
             style={{ color: "red" }}
           >
             Remove from cart
@@ -32,7 +29,7 @@ export default function ProductCard({ product }) {
         ) : (
           <button
             className="card-btn"
-            onClick={() => dispatch(addToCartFunc(product))}
+            onClick={() => dispatch((product))}
           >
             Add to card
           </button>

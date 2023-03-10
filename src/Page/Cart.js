@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import ProductCard from "../Components/ProductCard";
 
 export default function Cart() {
-  const { product } = useSelector((state) => state);
+  // const { product } = useSelector((state) => state);
+  let product
   let content;
   // if (loading) {
   //   content = (
@@ -31,8 +32,8 @@ export default function Cart() {
   //   content = cart.map((p) => <ProductCard product={p} />);
   //   console.log(product);
   // }
-  content = product.carts
-    .sort((a, b) => a.id - b.id)
-    .map((c) => <ProductCard product={c} />);
+  content = product?.carts
+    ?.sort((a, b) => a.id - b.id)
+    ?.map((c) => <ProductCard product={c} />);
   return <section id="card-container">{content}</section>;
 }

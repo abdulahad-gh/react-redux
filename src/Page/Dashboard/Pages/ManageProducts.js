@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import deleteProductThunk from '../../../redux/thunk/product/deleteProduct';
-import fetchData from '../../../redux/thunk/product/fetchData';
+
 
 const ManageProducts = () => {
     const products = useSelector(state => state.product.products)
@@ -19,8 +18,14 @@ const dleteImg = (e) => {
 }
     useEffect(()=> {
 
-    dispatch (fetchData())
+    dispatch ()
 },[])
+
+const updateProduct = ()=> {
+  setModalBox(true)
+
+  
+}
     return (
       <>
       { modalBox ? 
@@ -69,7 +74,7 @@ const dleteImg = (e) => {
   </form>
       <div className='flex gap-4'> 
        <button onClick={()=>setModalBox(false)} className='bg-red-500'>Cancel</button>
-      <button  onClick={()=>setModalBox(false)} className='bg-blue-500'>Update</button></div>
+      <button  onClick={()=>updateProduct()} className='bg-blue-500'>Update</button></div>
       </section>
   
 
@@ -96,7 +101,7 @@ const dleteImg = (e) => {
                       setUpdateSelectProduct(product)
                       setModalBox(true)
                     }} className=' btn bg-gray-200 rounded-md p-1 text-blue-500 hover:text-white'>Edit</button>
-                    <button onClick={()=>dispatch(deleteProductThunk(product.id))} className=' btn bg-gray-500 rounded-md p-1 text-white hover:text-red-500'>Delete</button>
+                    <button onClick={()=>dispatch()} className=' btn bg-gray-500 rounded-md p-1 text-white hover:text-red-500'>Delete</button>
                 </td>
               </tr>)
         }

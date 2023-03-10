@@ -2,14 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../Components/ProductCard";
-import {
-  Brand,
-  error,
-  getAllProduct,
-  removeFilter,
-  stockCreator,
-} from "../redux/actionsCreators/productActions";
-import fetchData from "../redux/thunk/product/fetchData";
+ 
 
 export default function Home() {
   const { product, filter } = useSelector((state) => state);
@@ -19,7 +12,7 @@ export default function Home() {
   console.log(stock);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch();
   }, []);
   
   let content;
@@ -52,8 +45,8 @@ export default function Home() {
   // }
 
   console.log(product);
-  if (product.products.length) {
-    content = product.products.map((item) => <ProductCard product={item} />);
+  if (product?.products.length) {
+    content = product?.products?.map((item) => <ProductCard product={item} />);
     if (stock || brand.length) {
       content = product.products
         .filter((item) => {
@@ -76,7 +69,7 @@ export default function Home() {
     <>
       <aside className="aside-container">
         <li
-          onClick={() => dispatch(stockCreator())}
+          onClick={() => dispatch()}
           className={`bg-gray-400 rounded-md p-2 cursor-pointer ${
             stock === true ? activeClass : null
           }`}
@@ -84,7 +77,7 @@ export default function Home() {
           Stock
         </li>
         <li
-          onClick={() => dispatch(Brand("amd"))}
+          onClick={() => dispatch()}
           className={` bg-gray-400 rounded-md p-2 cursor-pointer ${
             brand.includes("amd") ? activeClass : null
           }`}
@@ -92,7 +85,7 @@ export default function Home() {
           AMD
         </li>
         <li
-          onClick={() => dispatch(Brand("intel"))}
+          onClick={() => dispatch()}
           className={`bg-gray-400 rounded-md p-2 cursor-pointer ${
             brand.includes("intel") ? activeClass : null
           }`}
@@ -101,7 +94,7 @@ export default function Home() {
         </li>
         {stock || brand.length ? (
           <li
-            onClick={() => dispatch(removeFilter())}
+            onClick={() => dispatch()}
             className="bg-gray-100 rounded-md p-2 cursor-pointer"
           >
             Clear filter
