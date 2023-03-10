@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addToProduct } from "../../../features/product/productSlice";
 
 export default function AddProduct() {
   const products = useSelector(state => state.product.products)
@@ -47,7 +48,7 @@ export default function AddProduct() {
       brand: productBrand,
     };
 
- dispatch()
+ dispatch(addToProduct(productData))
 
     // axios
     //   .post("http://localhost:5000/add-product", productData)

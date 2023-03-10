@@ -36,7 +36,7 @@ export default function Navbar() {
                   borderRadius: "100%",
                 }}
               >
-                {product.carts.length}
+                {product?.carts?.length}
               </span>{" "}
             </Link>
           </li>
