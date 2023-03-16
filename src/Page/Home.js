@@ -2,22 +2,22 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../Components/ProductCard";
+import { getProducts } from "../features/product/productSlice";
  
 
 export default function Home() {
   const product = useSelector((state) => state.product);
+
   // const { filters, keyword } = filter;
   // const { stock, brand } = useSelector((state) => state.filter.filters);
   // const activeClass = "text-white  bg-blue-800 border-white";
   // console.log(stock);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-const [products, setProducts] = useState([])
-
+// const [products, setProducts] = useState([])
+console.log(product)
   useEffect(() => {
-    fetch('http://localhost:5000/products')
-    .then(res => res.json())
-    .then(data => setProducts(data))
+    dispatch(getProducts()) ;
   }, []);
   
   let content;
@@ -48,13 +48,15 @@ const [products, setProducts] = useState([])
   //   content = product.map((p) => <ProductCard product={p} />);
   //   console.log(product);
   // }
-
-  if (product.products?.length) {
+if(product.isLoading){
+content = 'loading......'
+}else if(product.isError){
+  content = product.errorMessage
+}
+  else  {
     content = product.products?.map((item) => <ProductCard key={item.id} product={item} />);
   }
-  else{
-    content = 'something went wrong.....'
-  }
+ 
   //   // if (stock || brand.length) {
   //   //   content = product.products
   //   //     .filter((item) => {
