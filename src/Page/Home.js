@@ -50,7 +50,7 @@ const [products, setProducts] = useState([])
   // }
 
   if (product.products?.length) {
-    content = product.products?.map((item) => <ProductCard product={item} />);
+    content = product.products?.map((item) => <ProductCard key={item.id} product={item} />);
   }
   else{
     content = 'something went wrong.....'

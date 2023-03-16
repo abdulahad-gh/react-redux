@@ -4,6 +4,7 @@ const initialState = {
     products:[]
 }
 
+// export const fetchProduct = 
 const prodcutSlice = createSlice({
     name:'product',
     initialState,

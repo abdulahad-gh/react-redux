@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import ProductCard from "../Components/ProductCard";
 
 export default function Cart() {
-  // const { product } = useSelector((state) => state);
-  let product
+  const { carts } = useSelector((state) => state.cart);
   let content;
   // if (loading) {
   //   content = (
@@ -28,12 +27,16 @@ export default function Cart() {
   // if (!loading && !error && cart.length === 0) {
   //   content = <p style={{ color: "orange" }}>Your product is empty!</p>;
   // }
-  // if (!loading && !error && cart.length) {
-  //   content = cart.map((p) => <ProductCard product={p} />);
-  //   console.log(product);
-  // }
-  content = product?.carts
-    ?.sort((a, b) => a.id - b.id)
-    ?.map((c) => <ProductCard product={c} />);
+
+ ;
+ if(!carts?.length){
+  content = 'your cart is emptyyy'
+ }else{
+  content = carts.map((p) => <ProductCard key={p.id} product={p} />)
+ }
+  
+  // content = product?.carts
+  //   ?.sort((a, b) => a.id - b.id)
+  //   ?.map((c) => <ProductCard product={c} />);
   return <section id="card-container">{content}</section>;
 }

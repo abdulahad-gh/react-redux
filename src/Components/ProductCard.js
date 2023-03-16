@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { addToCart, deleteFromCart } from "../features/cart/cartSlice";
 
 
 export default function ProductCard({ product }) {
@@ -21,7 +22,7 @@ export default function ProductCard({ product }) {
         {location.pathname === "/cart" ? (
           <button
             className="card-btn"
-            onClick={() => dispatch((product))}
+            onClick={() => dispatch(deleteFromCart(product))}
             style={{ color: "red" }}
           >
             Remove from cart
@@ -29,7 +30,7 @@ export default function ProductCard({ product }) {
         ) : (
           <button
             className="card-btn"
-            onClick={() => dispatch((product))}
+            onClick={() => dispatch((addToCart(product)))}
           >
             Add to card
           </button>
