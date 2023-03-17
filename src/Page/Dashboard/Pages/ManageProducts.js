@@ -10,16 +10,16 @@ const ManageProducts = () => {
 const {id,productTitle,productPrice,productImg,status,brand,productDesc} = updateSelectProduct;
 let imgUrl = productImg
 
+// useEffect(()=>{
+// dispatch(getProducts())
+// },[])
 //  const [imgAsset, setImgAsset] = useState(imgUrl)
 const dleteImg = (e) => {
   e.preventDefault()
   imgUrl=''
   console.log(imgUrl)
 }
-    useEffect(()=> {
 
-    dispatch ()
-},[])
 
 const updateProduct = ()=> {
   setModalBox(true)
@@ -27,10 +27,9 @@ const updateProduct = ()=> {
   
 }
     return (
-      <>
+       <>
       { modalBox ? 
   
-
 <section className='w-[60%] bg-red-300 p-1 flex flex-col rounded-md gap-2'>
 <h3 className='text-center'>Edit your product</h3>
   <form>
@@ -76,38 +75,39 @@ const updateProduct = ()=> {
        <button onClick={()=>setModalBox(false)} className='bg-red-500'>Cancel</button>
       <button  onClick={()=>updateProduct()} className='bg-blue-500'>Update</button></div>
       </section>
+
   
 
 
       :
-      <div className='flex justify-center items-center  h-[300px]'>
-          <table class="table-auto">
-        <thead>
-          <tr>
-            <th>Img</th>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody > 
-        {
-            products.map(product =>   <tr >
-                <td><img className='w-4 h-4 rounded-full object-cover' src={product.productImg} /></td>
-                <td>{product.productTitle}</td>
-                <td>{product.productPrice}</td>
-                <td className='flex gap-2'>
-                    <button onClick={()=> {
-                      setUpdateSelectProduct(product)
-                      setModalBox(true)
-                    }} className=' btn bg-gray-200 rounded-md p-1 text-blue-500 hover:text-white'>Edit</button>
-                    <button onClick={()=>dispatch()} className=' btn bg-gray-500 rounded-md p-1 text-white hover:text-red-500'>Delete</button>
-                </td>
-              </tr>)
-        }
-        </tbody>
-      </table>
-      </div>
+ <div className='flex justify-center items-center  h-[300px]'>
+    <table class="table-auto">
+  <thead>
+    <tr>
+      <th>Img</th>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody > 
+  {
+      products?.map(product =>   <tr >
+          <td><img className='w-4 h-4 rounded-full object-cover' src={product?.productImg} /></td>
+          <td>{product?.productTitle}</td>
+          <td>{product?.productPrice}</td>
+          <td className='flex gap-2'>
+              <button onClick={()=> {
+                setUpdateSelectProduct(product)
+                setModalBox(true)
+              }} className=' btn bg-gray-200 rounded-md p-1 text-blue-500 hover:text-white'>Edit</button>
+              <button onClick={()=>dispatch()} className=' btn bg-gray-500 rounded-md p-1 text-white hover:text-red-500'>Delete</button>
+          </td>
+        </tr>)
+  }
+  </tbody>
+</table>
+</div>
       }
       </>
     );

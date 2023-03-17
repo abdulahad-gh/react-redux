@@ -2,26 +2,28 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../Components/ProductCard";
-import { getProducts } from "../features/product/productSlice";
- 
+ import { useGetProductQuery } from "../features/api/apiSlice";
 
 export default function Home() {
-  const product = useSelector((state) => state.product);
 
   // const { filters, keyword } = filter;
   // const { stock, brand } = useSelector((state) => state.filter.filters);
   // const activeClass = "text-white  bg-blue-800 border-white";
   // console.log(stock);
-  const dispatch = useDispatch();
+  const {data, isLoading,isFetching,isSuccess } = useGetProductQuery()
+  if(isLoading){
+    return <p>Loading...</p>
+  }
+  console.log(data,isLoading)
 
 // const [products, setProducts] = useState([])
-console.log(product)
-  useEffect(() => {
-    dispatch(getProducts()) ;
-  }, []);
+// console.log(product)
+//   useEffect(() => {
+//     dispatch(getProducts()) ;
+//   }, []);
   
   let content;
-  // if (product.isLoading) {
+  // if (data.isLoading) {
   //   content = (
   //     <p>
   //       Loading...
@@ -40,36 +42,36 @@ console.log(product)
   // if (error) {
   //   content = <p style={{ color: "red" }}>Something went wrong</p>;
   // }
-  // console.log(product.length);
-  // if (!loading && !error && product.length === 0) {
+  // console.log(data.length);
+  // if (!loading && !error && data.length === 0) {
   //   content = <p style={{ color: "orange" }}>Your product is empty!</p>;
   // }
-  // if (!loading && !error && product.length) {
-  //   content = product.map((p) => <ProductCard product={p} />);
+  // if (!loading && !error && data.length) {
+  //   content = data.map((p) => <ProductCard product={p} />);
   //   console.log(product);
   // }
-if(product.isLoading){
+if(isLoading){
 content = 'loading......'
-}else if(product.isError){
-  content = product.errorMessage
+}else if(data.isError){
+  content = data.errorMessage
 }
   else  {
-    content = product.products?.map((item) => <ProductCard key={item.id} product={item} />);
+    content = data.map((item) => <ProductCard key={item.id} product={item} />);
   }
  
   //   // if (stock || brand.length) {
-  //   //   content = product.products
+  //   //   content = data.products
   //   //     .filter((item) => {
   //   //       if (stock) {
   //   //         return item.status === true;
   //   //       }
-  //   //       return product.products;
+  //   //       return data.products;
   //   //     })
   //   //     .filter((item) => {
   //   //       if (brand.length) {
   //   //         return brand.includes(item.brand);
   //   //       }
-  //   //       return product.products;
+  //   //       return data.products;
   //   //     })
         
   //   }

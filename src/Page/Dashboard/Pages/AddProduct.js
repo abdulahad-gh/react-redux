@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addProduct } from "../../../features/product/productSlice";
 // import { addToProduct } from "../../../features/product/productSlice";
 
 export default function AddProduct() {
@@ -50,7 +49,7 @@ export default function AddProduct() {
     };
 
 
- dispatch(addProduct(productData))
+ dispatch()
 
     // axios
     //   .post("http://localhost:5000/add-product", productData)
